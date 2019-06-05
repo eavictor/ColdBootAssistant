@@ -13,6 +13,6 @@ cp ./service/ColdBootAssistant.service /lib/systemd/system/ColdBootAssistant.ser
 sudo chmod 644 /lib/systemd/system/ColdBootAssistant.service
 sudo chmod +x /home/pi/ColdBootAssistant/main.py
 sudo systemctl daemon-reload
-sudo systemctl enable schedule_camera.service
-sudo systemctl start schedule_camera.service
+sudo systemctl enable ColdBootAssistant.service
+sudo systemctl start ColdBootAssistant.service
 exit 0
