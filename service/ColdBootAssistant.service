@@ -1,0 +1,11 @@
+[Unit]
+Description=ColdBootAssistant
+After=multi-user.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/python3 /home/pi/ColdBootAssistant/main.py
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

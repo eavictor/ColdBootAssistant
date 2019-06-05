@@ -20,4 +20,10 @@ chmod +x install_2_daemon.sh
 sudo install_1_python.sh
 
 # 8.
-sudo install_2_daemon.sh
+sudo su
+
+# 9.
+install_2_daemon.sh
+
+# 10.
+reboot

@@ -41,3 +41,5 @@ rm /usr/local/bin/python3-config
 ln -s /usr/local/bin/python3.7-config /usr/local/bin/python3-config
 
 apt-get autoremove --purge
+
+exit 0
