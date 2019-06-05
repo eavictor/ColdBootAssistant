@@ -1,0 +1,23 @@
+# 1.
+sudo service ssh start
+
+# 2.
+sudo apt-get install git
+
+# 3.
+git clone https://github.com/eavictor/ColdBootAssistant.git
+
+# 4.
+cd ColdBootAssistant
+
+# 5.
+chmod +x install_1_python.sh
+
+# 6.
+chmod +x install_2_daemon.sh
+
+# 7.
+sudo install_1_python.sh
+
+# 8.
+sudo install_2_daemon.sh
