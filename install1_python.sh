@@ -12,16 +12,16 @@ apt-get dist-upgrade -y
 apt-get install -y build-essential checkinstall libreadline-gplv2-dev libncursesw5-dev libssl-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev libffi-dev zlib1g-dev
 apt-get install -y wget
 
-wget https://www.python.org/ftp/python/$(PYTHON_VERSION)/Python-$(PYTHON_VERSION).tgz
-tar xzf Python-$(PYTHON_VERSION).tgz
-cd Python-$(PYTHON_VERSION)
+wget https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTHON_VERSION}.tgz
+tar xzf Python-${PYTHON_VERSION}.tgz
+cd Python-${PYTHON_VERSION}
 ./configure --enable-optimizations
 make -j8 build_all
 make -j8 install
 cd ..
 
-rm -r Python-$(PYTHON_VERSION)
-rm Python-$(PYTHON_VERSION).tgz
+rm -r Python-${PYTHON_VERSION}
+rm Python-${PYTHON_VERSION}.tgz
 
 rm /usr/local/bin/python3
 ln -s /usr/local/bin/python3.7 /usr/local/bin/python3

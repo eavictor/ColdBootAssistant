@@ -8,10 +8,10 @@ if [[ $EUID -ne 0 ]]; then
    exit 1
 fi
 
-cp ./service/$(SERVICE_NAME) /lib/systemd/system/$(SERVICE_NAME)
-sudo chmod 644 /lib/systemd/system/$(SERVICE_NAME)
-sudo chmod +x /home/pi/ColdBootAssistant/$(PY_FILE)
+cp ./service/${SERVICE_NAME} /lib/systemd/system/${SERVICE_NAME}
+sudo chmod 644 /lib/systemd/system/${SERVICE_NAME}
+sudo chmod +x /home/pi/ColdBootAssistant/${PY_FILE}
 sudo systemctl daemon-reload
-sudo systemctl enable $(SERVICE_NAME)
-sudo systemctl start $(SERVICE_NAME)
+sudo systemctl enable ${SERVICE_NAME}
+sudo systemctl start ${SERVICE_NAME}
 exit 0
