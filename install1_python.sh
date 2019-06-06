@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-PYTHON_VERSION = 3.7.3
+PYTHON_VERSION="3.7.3"
 
 chmod +x coldboot.py
 chmod +x force_shutdown.py

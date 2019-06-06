@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-SERVICE_NAME = FlaskWebServer.service
-PY_FILE = web/webapp.py
+SERVICE_NAME="FlaskWebServer.service"
+PY_FILE="web/webapp.py"
 
 if [[ $EUID -ne 0 ]]; then
    echo "This script must be run as root" 1>&2

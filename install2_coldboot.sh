@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-SERVICE_NAME = ColdBootAssistant.service
-PY_FILE = coldboot.py
+SERVICE_NAME="ColdBootAssistant.service"
+PY_FILE="coldboot.py"
 
 if [[ $EUID -ne 0 ]]; then
    echo "This script must be run as root" 1>&2
