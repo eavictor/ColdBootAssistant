@@ -1,0 +1,11 @@
+[Unit]
+Description=FlaskWebServer
+After=multi-user.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/python3 /home/pi/ColdBootAssistant/web/webapp.py
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

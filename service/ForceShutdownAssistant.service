@@ -1,11 +1,11 @@
 [Unit]
-Description=ColdBootAssistant
+Description=ForceShutdownAssistant
 After=multi-user.target
 
 [Service]
 ExecStartPre=/bin/sleep 60
 Type=simple
-ExecStart=/usr/local/bin/python3 /home/pi/ColdBootAssistant/coldboot.py
+ExecStart=/usr/local/bin/python3 /home/pi/ColdBootAssistant/force_shutdown.py
 Restart=on-failure
 
 [Install]

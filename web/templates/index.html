@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cold Boot / Force Shutdown Count</title>
+</head>
+<body>
+    <h1>Count</h1>
+    <h1 id="display">0</h1>
+    <br/><br/><br/><br/>
+    <p>Function Test</p>
+    <button onclick="plus_count()">Count +1</button>
+    <button onclick="minus_count()">Count -1</button>
+    <button onclick="reset_count()">Reset</button>
+</body>
+<script type="text/javascript" src="{{ url_for('static', filename='socket.io.js') }}"></script>
+<script type="text/javascript">
+    let socket = io.connect(location.protocol + "//" + location.host + "/");
+    socket.on("update_count", function(data){
+        let display = document.getElementById("display");
+        display.innerText = data;
+    });
+
+    function plus_count(){
+        if(confirm("You are about to test \"Count +1\", proceed ?")){
+            socket.emit("count_plus_one");
+        }
+    }
+
+    function minus_count(){
+        if(confirm("You are about to test \"Count -1\", proceed ?")){
+            socket.emit("count_minus_one");
+        }
+    }
+
+    function reset_count(){
+        if(confirm("You are about to RESET Count, are you sure ")){
+            socket.emit("reset_count");
+        }
+    }
+</script>
+</html>

@@ -2,6 +2,10 @@
 
 PYTHON_VERSION = 3.7.3
 
+chmod +x coldboot.py
+chmod +x force_shutdown.py
+chmod +x ./web/webapp.py
+
 apt-get update
 apt-get upgrade -y
 apt-get dist-upgrade -y
@@ -39,6 +43,10 @@ ln -s /usr/local/bin/python3.7m /usr/bin/python3m
 
 rm /usr/local/bin/python3-config
 ln -s /usr/local/bin/python3.7-config /usr/local/bin/python3-config
+
+/usr/local/bin/python3 -m pip install --upgrade pip
+/usr/local/bin/python3 -m pip install --upgrade setuptools
+/usr/local/bin/pip3 install -Ur requirements.txt
 
 apt-get autoremove --purge
 

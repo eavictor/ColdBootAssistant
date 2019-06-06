@@ -1,9 +1,11 @@
 import RPi.GPIO as GPIO
 import time
+import socketio
+from socketio.exceptions import ConnectionError
 
 
 def main():
-    time.sleep(10)  # wait 10 seconds for initialize
+    sio = None
 
     GPIO.setmode(GPIO.BOARD)
 
@@ -19,7 +21,7 @@ def main():
 
     while True:
         try:
-            # Read voltage value from PIN 4
+            # Read voltage value from PIN 3
             input_voltage = GPIO.input(input_channel)
 
             if input_voltage == GPIO.LOW:
@@ -31,14 +33,23 @@ def main():
 
             time.sleep(0.1)
 
-            # Press Power Switch for 0.3 seconds when system is powered off for 3 seconds.
-            if count >= 30:
-                # Short circuit [PowerSW +] and [PowerSW -] (trigger cold boot)
+            # Press Power Switch for 0.3 seconds when system is powered off for 10 seconds.
+            if count > 100:
+                # Simulate cold boot
                 GPIO.output(output_channel, GPIO.HIGH)
-                # Human push button power button usually between 0.3~0.6 seconds.
                 time.sleep(0.3)
-                # Release [PowerSW +] and [PowerSW -] short circuit (reset to open circuit)
                 GPIO.output(output_channel, GPIO.LOW)
+
+                # Update success operation count to Flask WebServer
+                if sio:
+                    sio.emit("count_plus_one")
+                else:
+                    try:
+                        sio = socketio.Client()
+                        sio.connect("http://localhost/")
+                        sio.emit("count_plus_one")
+                    except ConnectionError:
+                        sio = None
                 count = 0
         except KeyboardInterrupt:
             GPIO.cleanup()

@@ -1,60 +1,146 @@
+=================
 ColdBootAssistant
 =================
 
-------------
-Installation
-------------
-1. (optional) Enable SSH Server on Raspberry Pi
+--------
+Behavior
+--------
+
+1. If Flask Service is installed, Start Flask Service.
+
+2. Wait 60 seconds and start Cold Boot / Force Shutdown Assistant.
+
+3. If Flask Service is installed, everyone can see current count.
+
+-------------------
+1. Install Raspbian
+-------------------
+1. Download Raspbian Lite from Here_.
+
+.. _Here: https://www.raspberrypi.org/downloads/raspbian/
+
+2. Unzip downloaded file.
+
+3. Write image to Micro SD Card.
+
+-----------------------------
+2. Connect to WiFi (Optional)
+-----------------------------
+.. code-block:: bash
+
+    sudo raspi-config
+
+1. Choose 2 Network Options
+
+2. Choose N2 Wi-fi
+
+3. Select Country
+
+4. Enter WiFi SSID
+
+5. Enter WiFi Password
+
+-------------------------------
+3. Enable SSH Server (Optional)
+-------------------------------
+
+1. Enable SSH Server from raspi-config
+
+2. Choose 5 Interfacing Options
+
+3. Choose P2 SSH
+
+4. Select <Yes>
+
+5. Edit sshd_config
 
 .. code-block:: bash
 
-    sudo nano /etc/ssh/sshd_config
-    sudo service ssh start
+    sudo raspi-config
 
-2. Install git
+6. Uncomment these lines
+
+.. code-block::
+
+    #Port 22
+    #AddressFamily any
+    #ListenAddress 0.0.0.0
+    #ListenAddress ::
+    #LoginGraceTime 2m
+    #PermitRootLogin prohibit-password
+    #PasswordAuthentication yes
+    #PermitEmptyPasswords no
+
+7. Ctrl + O
+
+8. Enter
+
+9. Ctrl + X
+
+10. Make sure SSH Service is enabled and reload SSH Service
+
+.. code-block:: bash
+
+    sudo service ssh enable
+    sudo service ssh restart
+    sudo service ssh status
+
+-------------------
+4. Install Services
+-------------------
+
+1. Install git
 
 .. code-block:: bash
 
     sudo apt-get update
     sudo apt-get install -y git
 
-3. Clone this repository
+2. Clone this repository
 
 .. code-block:: bash
 
     git clone https://github.com/eavictor/ColdBootAssistant.git
 
-4. Change Directory
+3. Change Directory
 
 .. code-block:: bash
 
     cd ColdBootAssistant
 
-5. Change file owner (3 files)
+4. Change file owner (4 files)
 
 .. code-block:: bash
 
-    chown +x main.py
-    chown +x install_1_python.sh
-    chown +x install_2_service.sh
+    chown +x install1_python.sh
+    chown +x install2_coldboot.sh
+    chown +x install2_force_shutdown.sh
+    chown +x install3_flask.sh
 
-6. Install Python 3.7.3 (1st script)
+5. Install Python 3.7.3 (1st script)
 
 .. code-block:: bash
 
-    sudo bash install_1_python.sh
+    sudo bash install1_python.sh
 
-7. Change user to root
+6. Change user to root
 
 .. code-block:: bash
 
     sudo -i
 
-8. Install service (2nd script)
+7. Install one of below service (2nd script)
 
 .. code-block:: bash
 
-    bash install_2_daemon.sh
+    bash install2_coldboot.sh
+    bash install2_force_shutdown.sh
+
+8. Install Flask for showing cycle count (optional, 3rd script)
+
+.. code-block:: bash
+
+    bash install3_flask.sh
 
 --------------
 Hardware parts
@@ -67,6 +153,7 @@ Hardware parts
 6. 1x Breadboard
 7. 3x Female-to-Female DuPont Wire (see below)
 8. 8x Male-to-Female DuPont Wire (see below)
+9. 1x MicroSD Card
 
 
 .. important::
