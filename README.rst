@@ -142,6 +142,8 @@ Behavior
 
     bash install3_flask.sh
 
+9. For Force Shutdown, install python 3.7.3 and dependencies and put pc_boot_complete.py to startup folder
+
 --------------
 Hardware parts
 --------------
